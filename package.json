@@ -1,21 +1,18 @@
 {
-  "name": "bluemix-hello-node",
-  "version": "0.0.0",
-  "dependencies": {
-    "cf-deployment-tracker-client": "*",
-    "commander": "^2.6.0",
-    "express": "^4.14.1",
-    "http-post": "^0.1.1",
-    "http-proxy": "^1.8.1",
-    "materialize-css": "^1.0.0-rc.2",
-    "shelljs": "^0.8.4"
-  },
+  "name": "crash_course_web_app",
+  "version": "1.0.0",
+  "description": "",
   "main": "server.js",
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/IBM-Bluemix/bluemix-hello-node.git"
+  "author": "Gulu Mammadli",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.5",
+    "express": "^4.17.1",
+    "mongoose": "^5.10.15",
+    "nodemon": "^2.0.6"
   }
 }

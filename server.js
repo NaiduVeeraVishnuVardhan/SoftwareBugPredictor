@@ -1,33 +1,27 @@
-const { response } = require("express");
-const shell = require('shelljs')
-
-var express = require("express"),
-    app = express();
-
-var port = process.env.PORT || 8080;
+const express = require('express');
+const routes = require('./routes/index');
+const PORT = 3000;
+const app = express();
 const bodyParser = require('body-parser')
-app.use(express.static(__dirname + '/public'));
 
 app.use(bodyParser.json())
-app.post("/api/reg",function(req,res){
-    const { repolink } = req.body
-    // const path = 'C:\Users\vishn\Desktop\tri3Docs\bayesian'
-    // shell.cd(path)
-    // shell.exec('git clone '+repolink)
-    console.log(repolink)
-    res.json({ status: repolink })
-  })
 
-app.get("/test",function(req,res){
-  response.send("OK")
-})
+app.use(express.static('public'))
 
-app.get("/sayHello", function (request, response) {
-  var user_name = request.query.user_name;
-  response.end("Hello " + user_name + "!");
+app.set('view engine', 'ejs');
+
+app.use(express.urlencoded( {extended:true} ));
+
+app.get('/', (req, res) => {
+    res.render('home', {title: 'Home Page'});
 });
 
-app.listen(port);
-console.log("Listening on port ", port);
+// Routes
+app.use('/', routes)
 
-require("cf-deployment-tracker-client").track();
+app.use((req, res) => {
+    res.status(404).render('404', {title: '404 Page'});
+});
+
+app.listen(PORT);
+console.log("Listening on port ", PORT);
