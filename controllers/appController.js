@@ -9,7 +9,14 @@ const repoLink = (req,res) => {
     res.json({ status: repolink })
 }
 
+
+
 module.exports = {
     repoLink,
-    resultPage
+    resultPage,
+    
 }
+
+
+
+   

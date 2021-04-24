@@ -22,16 +22,16 @@
  
   <%- include("./partials/nav.ejs") %>
   <%- include("./partials/describe.ejs") %>
-
-
   <section>
   <h4 class="text-center">Download predicted project bugs here.</h4>
-    <div class="col-md-12 text-center">
-        <button id="download" class="btn btn-outline-primary"  type="button">Download</button>
-    </div>
     <!-- <div class="col-md-12 text-center">
-      <a href="New Wireframe 1.png" download="New Wireframe 1.png" target="_blank" class="resumeButton">click here</a>
+        <button id="download" class="btn btn-outline-primary"  type="button">Download</button>
     </div> -->
+    
+    <div class="col-md-12 text-center">
+      <a href="../public/files/data.csv" download="data.csv" target="_blank" class="resumeButton">click here</a>
+     
+    </div>
   </section>
 
   <section>
@@ -54,6 +54,19 @@
         event.preventDefault()  
         window.location.href = "/";
     } 
+    
+
+
+    const form = document.getElementById('myButton')
+    form.addEventListener('click', downloadExcel, false );
+    
+    async function downloadExcel(event){
+        event.preventDefault()  
+          
+              
+    }   
+
+
 </script>
 
 </body>
