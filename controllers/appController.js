@@ -6,16 +6,21 @@ const resultPage = (req,res) => {
 const repoLink = (req,res) => {
     
     const repolink = req.body
+    //Converting json body to string to access the json data.
+    var string = JSON.stringify(repolink)
+    var obj = JSON.parse(string);
+    var repoLinkk = obj.repolink;
 
     directory = process.cwd()
     fs = require("fs")
     if (!fs.existsSync("datacollection")){
         require("fs").mkdirSync("datacollection")
     }
+
     const shell = require('shelljs')
-    const path = directory
     shell.cd(directory+"/datacollection")
-    shell.exec('git clone '+repolink)
+    shell.exec('git clone '+repoLinkk)
+    console.log(repoLinkk)
 
     res.json({ status: repolink })
 
