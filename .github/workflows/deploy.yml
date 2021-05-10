@@ -1,0 +1,57 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Build and Package Application
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the develop branch
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      - uses: actions/checkout@v2
+      # Sets up NodeJS v12
+      - name: Use Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12.x'
+      # Running npm ci instead of install as it grabs packages from the package-lock which is a better practice
+      - name: Install Packages
+        run: npm ci
+      # Running Tests on the Node Project
+      # Skipping Tests for now until added.
+      #- name: Test Application
+      #  run: npm test
+
+      # Needs to be moved into the GitHub Secrets, Dont have access tho and just a burner.
+      - name: Login to DockerHub Registry
+        run: echo gN7NA@yr3i5Wru | docker login -u softwarebugpredictor --password-stdin
+      
+      - name: Get image version
+        id: vars
+        run: echo ::set-output name=tag::$(git rev-parse --short=4 ${GITHUB_SHA})
+
+      - name: Build the tagged image
+        run: docker build . --file Dockerfile --tag softwarebugpredictor/predictorapp:${{steps.vars.outputs.tag}}
+      
+      - name: Push the tagged Docker image
+        run: docker push softwarebugpredictor/predictorapp:${{steps.vars.outputs.tag}}
+      
+      - name: Build the latest Docker image
+        run: docker build . --file Dockerfile --tag softwarebugpredictor/predictorapp:latest
+      
+      - name: Push the latest Docker image
+        run: docker push softwarebugpredictor/predictorapp:latest
