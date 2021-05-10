@@ -32,5 +32,6 @@ jobs:
       - name: Install Packages
         run: npm ci
       # Running Tests on the Node Project
-      - name: Test Application
-        run: npm test
+      # Skipping Tests for now until added.
+      #- name: Test Application
+      #  run: npm test
