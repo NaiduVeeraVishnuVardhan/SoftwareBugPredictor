@@ -42,7 +42,7 @@ jobs:
       
       - name: Get image version
         id: vars
-        run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+        run: echo ::set-output name=tag::$(git rev-parse --short=4 ${GITHUB_SHA})
 
       - name: Build the tagged image
         run: docker build . --file Dockerfile --tag softwarebugpredictor/predictorapp:${{steps.vars.outputs.tag}}
