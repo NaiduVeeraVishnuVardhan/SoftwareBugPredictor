@@ -35,3 +35,23 @@ jobs:
       # Skipping Tests for now until added.
       #- name: Test Application
       #  run: npm test
+
+      # Needs to be moved into the GitHub Secrets, Dont have access tho and just a burner.
+      - name: Login to DockerHub Registry
+        run: echo gN7NA@yr3i5Wru | docker login -u softwarebugpredictor --password-stdin
+      
+      - name: Get image version
+        id: vars
+        run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
+
+      - name: Build the tagged image
+        run: docker build . --file Dockerfile --tag softwarebugpredictor/predictorapp:${{steps.vars.outputs.tag}}
+      
+      - name: Push the tagged Docker image
+        run: docker push softwarebugpredictor/predictorapp:${{steps.vars.outputs.tag}}
+      
+      - name: Build the latest Docker image
+        run: docker build . --file Dockerfile --tag softwarebugpredictor/predictorapp:latest
+      
+      - name: Push the latest Docker image
+        run: docker push softwarebugpredictor/predictorapp:latest
