@@ -1,8 +1,24 @@
 const express = require('express');
 const routes = require('./routes/index');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const passport = require('passport');
+const passportLocalMongoose = require('passport-local-mongoose');
+const expressSession = require('express-session')({
+  secret: 'secret',
+  resave: false,
+  saveUninitialized: false
+});
+const { userSchema } = require('./models/user');
+const mongo = require('./helpers/mongo')
+
+userSchema.plugin(passportLocalMongoose);
+userSchema.plugin(passportLocalMongoose);
+const UserDetails = mongo.model('User', userSchema);
+
 const PORT = 3000;
 const app = express();
-const bodyParser = require('body-parser')
+
 
 app.use(bodyParser.json())
 
@@ -11,6 +27,14 @@ app.use('/public', express.static('public'))
 app.set('view engine', 'ejs');
 
 app.use(express.urlencoded( {extended:true} ));
+
+//Passport Auth
+app.use(expressSession);
+app.use(passport.initialize());
+app.use(passport.session());
+passport.use(UserDetails.createStrategy());
+passport.serializeUser(UserDetails.serializeUser());
+passport.deserializeUser(UserDetails.deserializeUser());
 
 app.get('/', (req, res) => {
     res.render('home', {title: 'Home Page'});
