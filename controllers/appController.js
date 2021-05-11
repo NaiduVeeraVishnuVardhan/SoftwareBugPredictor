@@ -34,9 +34,9 @@ const repoLink = (req,res) => {
     shell.cd(directory+"/datacollection/"+repoName)
     shell.exec('git log --all --numstat --date=short --pretty=format:\'--%h--%ad--%aN\' --no-renames --after=2016-04-01 > logfile.log')
 
-    shell.exec("docker run -v " + directory+"/datacollection/"+repoName + ":/data -it code-maat-app -l /data/logfile.log -c git2 >" + repoName + "_code_metrics_authors.csv")
-    shell.exec("docker run -v " + directory+"/datacollection/"+repoName + ":/data -it code-maat-app -l /data/logfile.log -c git2 -a coupling >" + repoName + "_code_metrics_coupling.csv")
-    shell.exec("docker run -v " + directory+"/datacollection/"+repoName + ":/data -it code-maat-app -l /data/logfile.log -c git2 -a age >" + repoName + "_code_metrics_age.csv")
+    shell.exec("docker run -v " + directory+"/datacollection/"+repoName + ":/data code-maat-app -l /data/logfile.log -c git2 >" + repoName + "_code_metrics_authors.csv")
+    shell.exec("docker run -v " + directory+"/datacollection/"+repoName + ":/data code-maat-app -l /data/logfile.log -c git2 -a coupling >" + repoName + "_code_metrics_coupling.csv")
+    shell.exec("docker run -v " + directory+"/datacollection/"+repoName + ":/data code-maat-app -l /data/logfile.log -c git2 -a age >" + repoName + "_code_metrics_age.csv")
 
     console.log("End of the program")
 
