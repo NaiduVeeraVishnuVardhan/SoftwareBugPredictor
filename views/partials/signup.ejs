@@ -1,0 +1,45 @@
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="signup.css">
+  <script defer src="signup.js"></script>
+</head>
+
+<body>
+
+<form id="form1">
+  <fieldset>
+    <legend>Sign Up</legend>
+    <ul>
+      <li>
+        <label for="user">Enter your email address</label>
+        <input type="email" name="user" id="user" placeholder="user@email.com" required>
+        <span class='feedback'></span>
+      </li>
+      <li>
+        <label for="password">Choose a password</label>
+        <input type="password" name="password" id="password" required>
+        <span class='feedback'></span>
+        <div id="hint">Passwords must be 8-15 characters and contain:
+          <ul>
+            <li>at least one capital letter</li>
+            <li>at least one lowercase letter</li>
+            <li>at least one number</li>
+          </ul>
+        </div>
+      </li>
+      <li>
+        <label for="verifyPassword">Re-enter your password</label>
+        <input type="password" name="verifyPassword" id="verifyPassword" required>
+        <span class='feedback'></span>
+      </li>
+      <li>
+        <input type="submit" value="Register me!">
+      </li>
+    </ul>
+  </fieldset>
+</form>
+</body>
