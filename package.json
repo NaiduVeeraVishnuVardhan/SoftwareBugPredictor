@@ -10,8 +10,9 @@
   "author": "Vishnu",
   "license": "ISC",
   "dependencies": {
-    "ejs": "^3.1.5",
+    "ejs": "^3.1.6",
     "express": "^4.17.1",
+    "install": "^0.13.0",
     "mongoose": "^5.10.15",
     "nodemon": "^2.0.6"
   }

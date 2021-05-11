@@ -15,7 +15,9 @@ app.use(express.urlencoded( {extended:true} ));
 app.get('/', (req, res) => {
     res.render('home', {title: 'Home Page'});
 });
-
+app.get('/api/login',(req,res)=> {
+    res.render('login', {title: 'login page'});
+});
 // Routes
 app.use('/', routes)
 
