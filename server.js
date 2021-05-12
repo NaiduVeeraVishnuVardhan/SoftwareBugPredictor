@@ -18,12 +18,8 @@ app.use(express.urlencoded( {extended:true} ));
 app.get('/', (req, res) => {
     res.render('home', {title: 'Home Page'});
 });
-app.get('/login',(req,res)=> {
-    res.render('login', {title: 'login page'});
-});
 // Routes
 app.use('/', routes)
-app.use('login',routes)
 app.use((req, res) => {
     res.status(404).render('404', {title: '404 Page'});
 });

@@ -4,5 +4,6 @@ const appController = require('../controllers/appController');
 
 router.post('/api/reg',appController.repoLink);
 router.get('/result',appController.resultPage);
-router.get('/login', appController.loginpage);
+router.get('/login', appController.loginPage);
+router.get('/signup', appController.signupPage);
 module.exports = router;
