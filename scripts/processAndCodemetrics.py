@@ -21,7 +21,7 @@ def merge_process_metrics(project):
                                                                    on="entity", how="left")
     age_authors_coupling = age_authors_csv[["entity", "age-months", "n-authors", "n-revs"]].merge(
         filtered_coupling[["entity", "degree", "average-revs"]], on="entity", how="left")
-    age_authors_coupling.to_csv(f"{project}/{project}_ml_ready-process-metrics.csv")
+    age_authors_coupling.to_csv(f"ml_ready-process-metrics.csv")
     # ml_ready_file = final_defect_record[["entity", "no_of_defects"]].merge(
     #     age_authors_coupling[["entity", "age-months", "n-authors", "n-revs", "degree", "average-revs"]], on="entity",
     #     how="left")
