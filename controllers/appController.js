@@ -8,12 +8,16 @@ const repoLink = (req,res) => {
     console.log(repolink)
     res.json({ status: repolink })
 }
+const loginpage = (req,res) => {
 
+    res.render('login' , {title:'Login Page'})
+}
 
 
 module.exports = {
     repoLink,
     resultPage,
+    loginpage,
     
 }
 
