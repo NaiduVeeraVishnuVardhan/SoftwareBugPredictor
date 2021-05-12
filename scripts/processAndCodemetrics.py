@@ -2,32 +2,6 @@ import argparse
 import pandas
 
 
-def merge_code_metrics(project):
-    format_code_metrics(project)
-    final_defect_record = create_defect_csv(project)
-
-    code_metrics_csv = f"{project}/{project}-code-metrics.csv"
-    code_metrics_df = pandas.read_csv(code_metrics_csv)
-    code_metrics_df = filtered_dataframe(code_metrics_df)
-    supported_code_metrics = ["entity", "McCC", "CLOC", "LLOC", "LOC"]
-
-    ml_ready_file = final_defect_record[["entity", "no_of_defects"]].merge(
-        code_metrics_df[supported_code_metrics], on="entity", how="left")
-
-    ml_ready_file.to_csv(f"{project}/{project}_ml_ready-code-metrics.csv", index=False)
-
-
-def format_code_metrics(project):
-    string_to_remove = f"C:/OutThere/School/Research-Data-Collection/Projects/{project}/"
-    code_metrics_file = f"{project}/{project}-File.csv"
-    code_metrics_df = pandas.read_csv(code_metrics_file)
-    code_metrics_df = code_metrics_df.rename(columns={"LongName": "entity"})
-
-    code_metrics_df['entity'] = code_metrics_df['entity'].str.replace(string_to_remove, "", regex=True)
-
-    code_metrics_df.to_csv(f"{project}/{project}-code-metrics.csv")
-
-
 def merge_process_metrics(project):
     final_defect_record = create_defect_csv(project)
 
@@ -52,7 +26,7 @@ def merge_process_metrics(project):
         age_authors_coupling[["entity", "age-months", "n-authors", "n-revs", "degree", "average-revs"]], on="entity",
         how="left")
 
-    ml_ready_file.to_csv(f"{project}/{project}_ml_ready-process-metrics.csv", index=False)
+    ml_ready_file.to_csv(f"{project}/new-{project}_ml_ready-process-metrics.csv", index=False)
 
 
 def filtered_dataframe(data_frame):
@@ -63,18 +37,15 @@ def filtered_dataframe(data_frame):
 
 
 def create_defect_csv(project):
-    defect_data_file_name = f"{project}/{project}.csv"
-    defect_data_csv = pandas.read_csv(defect_data_file_name)
-    filtered_defect_data = filtered_dataframe(defect_data_csv)
-    defect_files_defect_count = filtered_defect_data.pivot_table(index=['entity'], aggfunc='size')
+    issue_dataset = pandas.read_csv(f"{project}/{project}.csv")
+    issue_dataset.rename(columns={'FILE_NAME': 'entity'}, inplace=True)
+    value_counts = issue_dataset['entity'].value_counts(dropna=True, sort=True)
+    df_val_counts = pandas.DataFrame(value_counts)
+    df_value_counts_reset = df_val_counts.reset_index()
+    df_value_counts_reset.columns = ['entity', 'no_of_defects']
+    df_value_counts_reset.to_csv(f"{project}/new-{project}.csv")
 
-    defect_files_defect_count.to_csv(f"{project}/c_{project}.csv", index=True)
-
-    final_defect_record = pandas.read_csv(f"{project}/c_{project}.csv")
-    final_defect_record = final_defect_record.rename(columns={'0': 'no_of_defects'})
-    final_defect_record.to_csv(f"{project}/f_{project}.csv", index=False)
-
-    return final_defect_record
+    return df_value_counts_reset
 
 
 if __name__ == '__main__':
@@ -82,5 +53,4 @@ if __name__ == '__main__':
     parser.add_argument('--project')
     args = parser.parse_args()
 
-    merge_code_metrics(args.project)
     merge_process_metrics(args.project)

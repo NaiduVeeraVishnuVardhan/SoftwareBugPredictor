@@ -20,24 +20,25 @@ const repoLink = (req,res) => {
 
     directory = process.cwd()
 
-    if (!fs.existsSync("datacollection")){
-        require("fs").mkdirSync("datacollection")
+    if (!fs.existsSync("scripts")){
+        require("fs").mkdirSync("scripts")
     }
 
-    if(fs.existsSync("datacollection/" + repoName)){
-        shell.exec("rmdir datacollection/" + repoName)
+    if(fs.existsSync("scripts/" + repoName)){
+        shell.exec("rmdir scripts/" + repoName)
     }
 
-    shell.cd(directory+"/datacollection")
+    shell.cd(directory+"/scripts")
     shell.exec('git clone '+githubRepoLink)
 
-    shell.cd(directory+"/datacollection/"+repoName)
+    shell.cd(directory+"/scripts/"+repoName)
     shell.exec('git log --all --numstat --date=short --pretty=format:\'--%h--%ad--%aN\' --no-renames --after=2016-04-01 > logfile.log')
   
-    shell.exec("sudo docker run -v " + directory+"/datacollection/"+repoName + ":/data -i code-maat-app -l /data/logfile.log -c git2 >" + repoName + "_code_metrics_authors.csv")
-    shell.exec("sudo docker run -v " + directory+"/datacollection/"+repoName + ":/data -i code-maat-app -l /data/logfile.log -c git2 -a coupling >" + repoName + "_code_metrics_coupling.csv")
-    shell.exec("sudo docker run -v " + directory+"/datacollection/"+repoName + ":/data -i code-maat-app -l /data/logfile.log -c git2 -a age >" + repoName + "_code_metrics_age.csv")
-    
+    shell.exec("sudo docker run -v " + directory+"/scripts/"+repoName + ":/data -i code-maat-app -l /data/logfile.log -c git2 >" + repoName + "_code_metrics_authors.csv")
+    shell.exec("sudo docker run -v " + directory+"/scripts/"+repoName + ":/data -i code-maat-app -l /data/logfile.log -c git2 -a coupling >" + repoName + "_code_metrics_coupling.csv")
+    shell.exec("sudo docker run -v " + directory+"/scripts/"+repoName + ":/data -i code-maat-app -l /data/logfile.log -c git2 -a age >" + repoName + "_code_metrics_age.csv")
+    shell.cd(directory+"/scripts/")
+    shell.exec("python processAndCodemetrics.py --project "+repoName)
     res.json({ status: repolink })
 
 }
