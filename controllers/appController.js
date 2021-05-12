@@ -38,9 +38,8 @@ const repoLink = (req,res) => {
     shell.exec("sudo docker run -v " + directory+"/scripts/"+repoName + ":/data -i code-maat-app -l /data/logfile.log -c git2 -a coupling >" + repoName + "_code_metrics_coupling.csv")
     shell.exec("sudo docker run -v " + directory+"/scripts/"+repoName + ":/data -i code-maat-app -l /data/logfile.log -c git2 -a age >" + repoName + "_code_metrics_age.csv")
     shell.cd(directory+"/scripts/")
-    shell.exec("python processAndCodemetrics.py --project "+repoName)
+    shell.exec("sudo python3 processAndCodemetrics.py --project "+repoName)
     res.json({ status: repolink })
-
 }
 
 
