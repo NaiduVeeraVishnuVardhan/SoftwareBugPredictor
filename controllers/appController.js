@@ -11,7 +11,6 @@ const repoLink = (req,res) => {
 
     const repolink = req.body
     console.log(repolink)
-    res.json({ status: repolink })
 
     //Converting json body to string to access the json data.
     const string = JSON.stringify(repolink);
