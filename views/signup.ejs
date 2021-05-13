@@ -1,45 +1,84 @@
+<html lang="en">
+  <head>
+    <title>Register</title>
+    <link rel="stylesheet" href="public/css/login.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+  </head>
+  
+  <body>
+    <div class="section"></div>
+    <main>
+      <center>
 
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="public/css/signup.css">
-  <script defer src="public/js/signup.js"></script>
-</head>
-
-<body>
-
-<form id="form1">
-  <fieldset>
-    <legend>Sign Up</legend>
-    <ul>
-      <li>
-        <label for="user">Enter your email address</label>
-        <input type="email" name="user" id="user" placeholder="user@email.com" required>
-        <span class='feedback'></span>
-      </li>
-      <li>
-        <label for="password">Choose a password</label>
-        <input type="password" name="password" id="password" required>
-        <span class='feedback'></span>
-        <div id="hint">Passwords must be 8-15 characters and contain:
-          <ul>
-            <li>at least one capital letter</li>
-            <li>at least one lowercase letter</li>
-            <li>at least one number</li>
-          </ul>
+        <div class="section"></div>
+  
+        <h5 class="indigo-text">Register your account</h5>
+        <div class="section"></div>
+  
+        <div class="container">
+          <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+  
+            <form class="col s12" method="post">
+              <div class='row'>
+                <div class='col s12'>
+                </div>
+              </div>
+  
+              <div class='row'>
+                <div class='input-field col s12'>
+                  <input class='validate' type='email' name='first_name' id='first_name' />
+                  <label for='email'>Enter your first name</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s12'>
+                  <input class='validate' type='email' name='last_name' id='last_name' />
+                  <label for='email'>Enter your Last name</label>
+                </div>
+              </div>
+              <div class='row'>
+                <div class='input-field col s12'>
+                  <input class='validate' type='email' name='email' id='email' />
+                  <label for='email'>Enter your email</label>
+                </div>
+              </div>
+  
+              <div class='row'>
+                <div class='input-field col s12'>
+                  <input class='validate' type='password' name='password' id='password' />
+                  <label for='password'>Enter your password</label>
+                </div>
+                <label style='float: right;'>
+                  <a class='pink-text' href='#!'><b>Password size should be greater 8 </b></a>
+                </label>
+              </div>
+  
+              <br />
+              <center>
+                <div class='row'>
+                  <button type='submit' id= 'signup-form-submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Register</button>
+                </div>
+              </center>
+            </form>
+          </div>
         </div>
-      </li>
-      <li>
-        <label for="verifyPassword">Re-enter your password</label>
-        <input type="password" name="verifyPassword" id="verifyPassword" required>
-        <span class='feedback'></span>
-      </li>
-      <li>
-        <input type="submit" value="Register me!">
-      </li>
-    </ul>
-  </fieldset>
-</form>
-</body>
+        
+      </center>
+  
+      <div class="section"></div>
+      <div class="section"></div>
+    </main>
+    <script>
+    const button = document.getElementById('signup-form-submit')
+    button.addEventListener('click', returnHome, false );
+    async function returnHome(event){
+        event.preventDefault()  
+        window.location.href = "login";
+    }
+    </script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+  </body>
+
+  </html>

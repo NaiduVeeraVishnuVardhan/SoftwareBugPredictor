@@ -1,29 +1,70 @@
-
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
-  <link rel="stylesheet" href="public/css/login.css">
-  <script defer src="public/js/login.js"></script>
-</head>
-
-<body>
-  <main id="main-holder">
-    <h1 id="login-header">Login</h1>
+<html lang="en">
+    <head>
+      <title>Login</title>
+      <link rel="stylesheet" href="public/css/login.css">
+      <link rel="stylesheet" href="public/js/login.js"
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    </head>
     
-    <div id="login-error-msg-holder">
-      <p id="login-error-msg">Invalid username <span id="error-msg-second-line">and/or password</span></p>
-    </div>
+    <body>
+      <div class="section"></div>
+      <main>
+        <center>
+ 
+          <div class="section"></div>
     
-    <form id="login-form">
-      <input type="text" name="username" id="username-field" class="login-form-field" placeholder="Username">
-      <input type="password" name="password" id="password-field" class="login-form-field" placeholder="Password">
-      <input type="submit" value="Login" id="login-form-submit">
-      
-    <input type="submit" value="signup" id="signup-form-submit">
-    </form>
-  </main>
+          <h5 class="indigo-text">Please, login into your account</h5>
+          <div class="section"></div>
+    
+          <div class="container">
+            <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+    
+              <form class="col s12" method="post">
+                <div class='row'>
+                  <div class='col s12'>
+                  </div>
+                </div>
+    
+                <div class='row'>
+                  <div class='input-field col s12'>
+                    <input class='validate' type='email' name='email' id='email' />
+                    <label for='email'>Enter your email</label>
+                  </div>
+                </div>
+    
+                <div class='row'>
+                  <div class='input-field col s12'>
+                    <input class='validate' type='password' name='password' id='password' />
+                    <label for='password'>Enter your password</label>
+                  </div>
+                  <label style='float: right;'>
+                    <a class='pink-text' href='#!'><b>Forgot Password?</b></a>
+                  </label>
+                </div>
+    
+                <br />
+                <center>
+                  <div class='row'>
+                    <button type='submit' id= 'login-form-submit' name='btn_login' class='col s12 btn btn-large waves-effect indigo'>Login</button>
+                  </div>
+                </center>
+              </form>
+            </div>
+          </div>
+          <a href="signup">Create account</a>
+        </center>
+    
+        <div class="section"></div>
+        <div class="section"></div>
+      </main>
+    
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+      <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
+    </body>
+    
+    
+    
   <script>
     const button = document.getElementById('login-form-submit')
     button.addEventListener('click', returnHome, false );
@@ -31,12 +72,8 @@
         event.preventDefault()  
         window.location.href = "/";
     } 
-    const button1 = document.getElementById('signup-form-submit')
-    button1.addEventListener('click', returnSignup, false );
-    async function returnSignup(event){
-        event.preventDefault()  
-        window.location.href = "signup";
-    }
+ 
     </script>
 </body>
-
+ 
+</html>
