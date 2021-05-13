@@ -1,3 +1,4 @@
+const ResultModel = require('../models/result');
 
 const resultPage = (req,res) => {
 
@@ -55,11 +56,29 @@ const signupPage = (req,res) => {
     res.render('signup' , {title:'Sign Up Page'})
 }
 
+const addResult = (req,res) => {
+    const result = new ResultModel({
+        name: req.body.name,
+        date: Date.now(),
+        ownerId: req.user.id
+      });
+    
+      result
+        .save()
+        .then((savedItem) => {
+          res.json({savedItem})
+        })
+        .catch((err) => {
+          console.error(err);
+        });
+}
+
 module.exports = {
     repoLink,
     resultPage,
     loginPage,
-    signupPage
+    signupPage,
+    addResult
 
 }
 

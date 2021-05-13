@@ -13,6 +13,10 @@ router.get('/signup', appController.signupPage);
 router.post('/login', authController.login);
 router.get('/logout', isAuthenticated, authController.logout);
 router.get('/user', isAuthenticated, authController.getUser);
-router.post('/register', isAuthenticated, authController.register);
+router.post('/signup', authController.register);
+
+
+//Add Results to a User
+router.post('/api/addResult', isAuthenticated, appController.addResult);
 
 module.exports = router;
