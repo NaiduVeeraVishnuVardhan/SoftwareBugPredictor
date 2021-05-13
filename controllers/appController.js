@@ -9,6 +9,9 @@ const repoLink = (req,res) => {
     let fs = require("fs")
 
     const repolink = req.body
+    console.log(repolink)
+    res.json({ status: repolink })
+
     //Converting json body to string to access the json data.
     const string = JSON.stringify(repolink);
     const obj = JSON.parse(string);
@@ -45,9 +48,18 @@ const repoLink = (req,res) => {
     res.json({ status: repolink })
 }
 
+const loginPage = (req,res) => {
+    res.render('login' , {title:'Login Page'})
+}
+const signupPage = (req,res) => {
+    res.render('signup' , {title:'Sign Up Page'})
+}
+
 module.exports = {
     repoLink,
     resultPage,
+    loginPage,
+    signupPage
 
 }
 

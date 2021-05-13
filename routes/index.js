@@ -6,6 +6,8 @@ const isAuthenticated = require('../helpers/authHelper');
 
 router.post('/api/reg',appController.repoLink);
 router.get('/result',appController.resultPage);
+router.get('/login', appController.loginPage);
+router.get('/signup', appController.signupPage);
 
 //Auth Routes
 router.post('/login', authController.login);
