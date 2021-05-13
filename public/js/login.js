@@ -1,4 +1,4 @@
-const loginForm = document.getElementById("input-field col s12");
+const loginForm = document.getElementById("email");
 const loginButton = document.getElementById("login-form-submit");
 const loginErrorMsg = document.getElementById("login-error-msg");
 
