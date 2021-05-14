@@ -14,49 +14,125 @@
   <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
   <!-- Custom styles for this template -->
   <link href="css/scrolling-nav.css" rel="stylesheet">
-
+  <link href="css/styles.css" rel="stylesheet">
 </head>
 
 <body id="page-top">
 
- 
+
   <%- include("./partials/nav.ejs") %>
-  <%- include("./partials/describe.ejs") %>
-  <section>
-  <h4 class="text-center">Download predicted project bugs here.</h4>
-    <!-- <div class="col-md-12 text-center">
-        <button id="download" class="btn btn-outline-primary"  type="button">Download</button>
-    </div> -->
-    
-    <div class="col-md-12 text-center">
-      <a href="..\scripts\ml_ready-process-metrics.csv" download="ml_ready-process-metrics.csv" target="_blank" class="resumeButton"><button id="download" class="btn btn-outline-primary"  type="button">Download</button></a>
-    </div>
-  </section>
+    <%- include("./partials/describe.ejs") %>
+      <section>
 
-  <section>
-    <div class="container">
-        <h4 class="text-center">Diagnose another project.</h4>
-        <div class="col-md-12 text-center">
-        <button id="myButton" class="btn btn-outline-primary"  type="button">Diagnose</button>
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h4 class="margin-1rem">Download predicted project bugs here.</h4>
+              <a href="..\scripts\ml_ready-process-metrics.csv" download="ml_ready-process-metrics.csv" target="_blank"
+                class="resumeButton"><button id="download" class="btn btn-outline-dark"
+                  type="button">Download</button></a>
+              <button class="btn btn-outline-dark" onclick="ToggleReport()">View Report</button>
+            </div>
+            <div class="col-12 view-report" id="viewReport">
+              <h3>Here are the Bugs:</h3>
+              <code>
+.github/workflows/gradle_branch.yml,11
+.github/workflows/gradle_jdk11.yml,21
+.github/workflows/gradle_pr.yml,13
+.github/workflows/gradle_release.yml,1
+.github/workflows/gradle_snapshot.yml,18
+build.gradle,11
+.github/dependabot.yml,24
+src/main/java/io/reactivex/rxjava3/internal/schedulers/SchedulerPoolFactory.java,10
+src/main/java/io/reactivex/rxjava3/plugins/RxJavaPlugins.java,1
+src/test/java/io/reactivex/rxjava3/plugins/RxJavaPluginsTest.java,6
+src/test/java/io/reactivex/rxjava3/internal/operators/flowable/FlowableConcatMapSchedulerTest.java,4
+src/test/java/io/reactivex/rxjava3/internal/operators/flowable/FlowableConcatTest.java,17
+src/test/java/io/reactivex/rxjava3/internal/operators/flowable/FlowableMergeTest.java,25
+src/test/java/io/reactivex/rxjava3/internal/operators/flowable/FlowableSubscribeOnTest.java,25
+src/test/java/io/reactivex/rxjava3/internal/operators/observable/ObservableConcatMapSchedulerTest.java,27
+src/test/java/io/reactivex/rxjava3/internal/operators/observable/ObservableConcatTest.java,16
+src/test/java/io/reactivex/rxjava3/subjects/UnicastSubjectTest.java,23
+src/main/java/io/reactivex/rxjava3/exceptions/CompositeException.java,25
+config/checkstyle/checkstyle.xml,17
+config/checkstyle/suppressions.xml,7
+config/license/HEADER,9
+config/license/HEADER_JAVA,23
+src/main/java/io/reactivex/rxjava3/core/Completable.java,16
+src/main/java/io/reactivex/rxjava3/core/Flowable.java,2
+src/main/java/io/reactivex/rxjava3/core/Notification.java,9
+src/main/java/io/reactivex/rxjava3/core/Observable.java,20
+src/main/java/io/reactivex/rxjava3/internal/operators/flowable/FlowableReplay.java,6
+src/main/java/io/reactivex/rxjava3/internal/operators/mixed/ScalarXMapZHelper.java,23
+src/main/java/io/reactivex/rxjava3/internal/operators/observable/ObservableReplay.java,0
+src/main/java/io/reactivex/rxjava3/internal/util/QueueDrainHelper.java,6
+src/main/java/io/reactivex/rxjava3/observers/BaseTestConsumer.java,30
+src/test/java/io/reactivex/rxjava3/exceptions/CompositeExceptionTest.java,2
+src/test/java/io/reactivex/rxjava3/schedulers/SchedulerTestHelper.java,17
+gradle/wrapper/gradle-wrapper.jar,26
+gradle/wrapper/gradle-wrapper.properties,21
+gradlew,26
+gradlew.bat,1
+src/main/java/io/reactivex/rxjava3/core/Single.java,19
+CONTRIBUTING.md,21
+HEADER_JAVA,23
+checkstyle.xml,23
+src/jmh/java/io/reactivex/rxjava3/core/BinaryFlatMapPerf.java,29
+src/jmh/java/io/reactivex/rxjava3/core/BlockingGetPerf.java,9
+src/jmh/java/io/reactivex/rxjava3/core/BlockingPerf.java,20
+src/jmh/java/io/reactivex/rxjava3/core/CallableAsyncPerf.java,21
+src/jmh/java/io/reactivex/rxjava3/core/EachTypeFlatMapPerf.java,5
+src/jmh/java/io/reactivex/rxjava3/core/FlatMapJustPerf.java,4
+src/jmh/java/io/reactivex/rxjava3/core/FlattenCrossMapPerf.java,2
+src/jmh/java/io/reactivex/rxjava3/core/FlattenJustPerf.java,19
+src/jmh/java/io/reactivex/rxjava3/core/FlattenRangePerf.java,6
+src/jmh/java/io/reactivex/rxjava3/core/FlowableFlatMapCompletableAsyncPerf.java,8
+src/jmh/java/io/reactivex/rxjava3/core/FlowableFlatMapCompletableSyncPerf.java,2
+        </code>
+            </div>
+          </div>
         </div>
-      </div>
-    </section>
 
-<%- include("./partials/content.ejs") %>      
-<%- include("./partials/footer.ejs") %>
+      </section>
+
+      <section>
+        <div class="container">
+
+          <div class="row">
+            <div class="col-12">
+              <h4 class="margin-1rem">Diagnose another project.</h4>
+              <button id="myButton" class="btn btn-outline-dark" type="button">Diagnose</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <%- include("./partials/content.ejs") %>
+        <%- include("./partials/footer.ejs") %>
 
 
-<script>
-    const button = document.getElementById('myButton')
-    button.addEventListener('click', returnHome, false );
-    async function returnHome(event){
-        event.preventDefault()  
-        window.location.href = "/";
-    } 
-    
+          <script>
+            const button = document.getElementById('myButton')
+            button.addEventListener('click', returnHome, false);
+            async function returnHome(event) {
+              event.preventDefault()
+              window.location.href = "/";
+            }
 
 
-</script>
+            ToggleReport = () =>{
+              var element = document.getElementById('viewReport');
+
+              if(element.style.display == "block"){
+                element.style.display = "none";
+              }
+              else{
+                element.style.display = "block";
+              }
+            }
+
+          </script>
 
 </body>
+
 </html>
