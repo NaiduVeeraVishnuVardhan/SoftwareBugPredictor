@@ -2,7 +2,7 @@ const Mongoose = require('mongoose');
 
 Mongoose.Promise = global.Promise;
 Mongoose.connect(
-  `FILL THIS IN`,
+  `mongodb+srv://govindarajans:sowmyarajan@cluster0.qiqrp.mongodb.net/test`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
