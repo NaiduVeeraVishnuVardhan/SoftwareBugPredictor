@@ -1,0 +1,14 @@
+body{
+    min-height: 100vh;
+}
+.margin-1rem{
+ margin-bottom: 1rem;   
+}
+header{
+    background: url(../images/headerbg.jpg) no-repeat center center;
+    background-size: cover;
+}
+.view-report{
+    display: none;
+    margin-top: 3rem;
+}

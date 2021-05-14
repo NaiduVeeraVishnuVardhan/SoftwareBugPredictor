@@ -1,12 +1,28 @@
-const express = require('express')
-const router = express.Router()
-const appController = require('../controllers/appController')
+const express = require('express');
+const router = express.Router();
 const s3Controller = require('../controllers/s3Controller')
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
+const appController = require('../controllers/appController');
+const authController = require('../controllers/authController');
+const isAuthenticated = require('../helpers/authHelper');
+
+router.post('/api/reg',appController.repoLink);
+router.get('/result',appController.resultPage);
+router.get('/login', appController.loginPage);
+router.get('/signup', appController.signupPage);
+
+//Auth Routes
+router.post('/login', authController.login);
+router.get('/logout', isAuthenticated, authController.logout);
+router.get('/user', isAuthenticated, authController.getUser);
+router.post('/signup', authController.register);
 
 router.post('/api/reg', appController.repoLink)
 router.get('/result', appController.resultPage)
+
+//Add Results to a User
+router.post('/api/addResult', isAuthenticated, appController.addResult);
 
 router.post(
     '/s3/upload',
