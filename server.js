@@ -34,6 +34,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 app.get("/", (req, res) => {
   res.render("home", { title: "Home Page" });
+});
 app.use(express.urlencoded( {extended:true} ));
 
 //Passport Auth
@@ -89,4 +90,3 @@ const getprojects=(res)=>{
 }
 
 openConnection()
-
