@@ -1,12 +1,11 @@
-const login =  require('./post-login')
-const signup =  require('./post-signup')
+const login = require('./post-login')
+const signup = require('./post-signup')
 const logout = require('./get-logout')
+const currentUser = require('./get-user')
 
 module.exports = {
-    paths: {
-        '/login': { ...login},
-        '/user': {},
-        '/logout': {...logout},
-        '/signup': {...signup},
-    },
+    '/login': { ...login },
+    '/user': { ...currentUser },
+    '/logout': { ...logout },
+    '/signup': { ...signup },
 }
