@@ -4,7 +4,7 @@ const doc = require('./docs')
 const express = require('express')
 const routes = require('./routes/index')
 const cors = require('cors')
-const morgan = require('morgan');
+const morgan = require('morgan')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const passport = require('passport')
@@ -27,9 +27,8 @@ mongoose.connect(
     'mongodb+srv://govindarajans:sowmyarajan@cluster0.qiqrp.mongodb.net/test',
     { useNewUrlParser: true, useUnifiedTopology: true }
 )
-if(process.env.NODE_ENV === 'development'){
-
-  app.use(morgan('tiny'))
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('tiny'))
 }
 app.use(
     cors({
@@ -43,10 +42,10 @@ app.use(express.static('public'))
 
 app.use('/public', express.static('public'))
 app.use('/scripts', express.static('scripts'))
-app.set('view engine', 'ejs') 
+app.set('view engine', 'ejs')
 
 app.use(express.urlencoded({ extended: true }))
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(doc,{explorer:true}))
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(doc, { explorer: true }))
 app.get('/', (req, res) => {
     res.render('home', { title: 'Home Page' })
 })
