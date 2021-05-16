@@ -1,5 +1,5 @@
 const swaggerUi = require("swagger-ui-express");
-const { swaggerDocument } = require("./docs/swagger");
+const doc  = require("./docs");
 const express = require('express');
 const routes = require('./routes/index');
 const bodyParser = require('body-parser');
@@ -31,7 +31,7 @@ app.use("/scripts", express.static("scripts"));
 app.set("view engine", "ejs");
 
 app.use(express.urlencoded({ extended: true }));
-app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(doc));
 app.get("/", (req, res) => {
   res.render("home", { title: "Home Page" });
 });
