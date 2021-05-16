@@ -17,7 +17,7 @@ const mongo = require('./helpers/mongo')
 userSchema.plugin(passportLocalMongoose);
 const UserDetails = mongo.model('User', userSchema);
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 const app = express();
 const MongoClient = require('mongodb').MongoClient
 mongoose.connect('mongodb+srv://govindarajans:sowmyarajan@cluster0.qiqrp.mongodb.net/test',{useNewUrlParser:true,useUnifiedTopology:true});
