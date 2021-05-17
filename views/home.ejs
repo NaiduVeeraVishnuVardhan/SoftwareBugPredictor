@@ -13,7 +13,8 @@
   <!-- Custom styles for this template -->
   <link href="css/scrolling-nav.css" rel="stylesheet">
   <link href="css/styles.css" rel="stylesheet">
-  
+  <link href="css/loader.css" rel="stylesheet">
+
 
 </head>
 
@@ -26,12 +27,16 @@
 <section class="container">
       <div class="container">
         <h4 class="text-left margin-1rem">Get started by just using the GIT URL</h4>
-        <div class="input-group mb-3">
+        <div id="loader" class="d-none hidden">
+        <div class="loader"></div>
+        <p class="pl-4"> Wait Just a  moment while we check for BUGS! </p>
+        </div>
+        <div id="inputrepolinkgroup"class="input-group mb-3">
         <input class="form-control mr-1" id="uploadrepolink" placeholder="https://github.com/NaiduVeeraVishnuVardhan/SoftwareBugPredictor">
         <div class="input-group-append">
           <button id="myButton" class="btn btn-outline-dark"  type="button">Submit</button>
         </div>
-      </div>    
+      </div>
 </section>
 
 <%- include("./partials/content.ejs") %>
@@ -42,16 +47,24 @@
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
   <script src="js/scrolling-nav.js"></script>
-  
-  
+
+
   <script>
-    const form = document.getElementById('myButton')
+    const loading = false;
+    const repogroup = document.getElementById('inputrepolinkgroup')
+    const loader = document.getElementById('loader')
+
+    const form = document.getElementById('myButton');
     form.addEventListener('click', repo, false );
-    
+
     async function repo(event){
-        event.preventDefault()  
+        event.preventDefault()
+        repogroup.classList.add('d-none');
+        loader.classList.remove('d-none');
+        loader.classList.remove('d-flex');
+
         const repolink = document.getElementById('uploadrepolink').value
-                   
+
         const result = await fetch('/api/reg',{
             method: 'POST',
             headers:{
@@ -59,11 +72,11 @@
             },
             body: JSON.stringify({
               repolink
-            })                                       
-        }).then((res) => res.json())      
+            })
+        }).then((res) => res.json())
 
-       window.location.href = "result";
-    }   
+      window.location.href = "result";
+    }
 </script>
 
 </body>
