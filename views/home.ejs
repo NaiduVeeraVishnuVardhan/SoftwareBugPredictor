@@ -27,15 +27,18 @@
 <section class="container">
       <div class="container">
         <h4 class="text-left margin-1rem">Get started by just using the GIT URL</h4>
-        <div id="loader" class="d-none hidden">
+        <div id="loader" class="d-none">
         <div class="loader"></div>
         <p class="pl-4"> Wait Just a  moment while we check for BUGS! </p>
         </div>
-        <div id="inputrepolinkgroup"class="input-group mb-3">
-        <input class="form-control mr-1" id="uploadrepolink" placeholder="https://github.com/NaiduVeeraVishnuVardhan/SoftwareBugPredictor">
+        <div id="inputrepolinkgroup"class="input-group mb-3 has-validation">
+        <input class="form-control mr-1 " id="uploadrepolink" placeholder="eg. https://github.com/NaiduVeeraVishnuVardhan/SoftwareBugPredictor">
         <div class="input-group-append">
           <button id="myButton" class="btn btn-outline-dark"  type="button">Submit</button>
         </div>
+        <div class="invalid-feedback">
+        Github link starts with 'https://github.com' and ends  with '.git'
+      </div>
       </div>
 </section>
 
@@ -50,20 +53,22 @@
 
 
   <script>
-    const loading = false;
-    const repogroup = document.getElementById('inputrepolinkgroup')
+    let canSubmit = false;
+    const repogroup = document.getElementById('inputrepolinkgroup');
+    const repolink = document.getElementById('uploadrepolink')
+
     const loader = document.getElementById('loader')
 
     const form = document.getElementById('myButton');
+    repolink.addEventListener('input',userInputValidation,false)
     form.addEventListener('click', repo, false );
 
     async function repo(event){
         event.preventDefault()
+        if(canSubmit){
         repogroup.classList.add('d-none');
         loader.classList.remove('d-none');
-        loader.classList.remove('d-flex');
-
-        const repolink = document.getElementById('uploadrepolink').value
+        loader.classList.add('d-flex');
 
         const result = await fetch('/api/reg',{
             method: 'POST',
@@ -71,12 +76,36 @@
                 'Content-Type' : 'application/json'
             },
             body: JSON.stringify({
-              repolink
+              repolink:repolink.value
             })
         }).then((res) => res.json())
 
       window.location.href = "result";
+        }
     }
+
+    async function userInputValidation(event){
+      let link = event.target.value;
+      let isValid = await isGitUrl(link);
+      if(isValid){
+        repolink.classList.remove('is-invalid');
+        repolink.classList.add('is-valid');
+        canSubmit = true
+
+      } else{
+        repolink.classList.add('is-invalid');
+        repolink.classList.remove('is-valid');
+        canSubmit=false
+      }
+
+    }
+
+    async function isGitUrl(str) {
+        let regex = /(?:git|https?|git@[-\w.]+):(\/\/)?(github.com)\/(.*\/)(.{5,})/;
+        return regex.test(str);
+    };
+
+
 </script>
 
 </body>
