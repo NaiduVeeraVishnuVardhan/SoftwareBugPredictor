@@ -6,6 +6,7 @@ const routes = require('./routes/index')
 const cors = require('cors')
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
+const session = require('express-session');
 const mongoose = require('mongoose')
 const passport = require('passport')
 const passportLocalMongoose = require('passport-local-mongoose')
