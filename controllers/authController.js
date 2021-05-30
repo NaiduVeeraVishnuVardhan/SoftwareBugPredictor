@@ -53,3 +53,20 @@ module.exports = {
     logout,
     getUser
 }
+
+
+
+
+async forgotPassword(ctx) {
+  const input = ctx.request.body;
+
+  try {
+   await validateForgotPasswordInput(input);
+  } catch (err) {
+   return ctx.badRequest('ValidationError', err);
+  }
+
+  strapi.admin.services.auth.forgotPassword(input);
+
+  ctx.status = 204;
+ }
