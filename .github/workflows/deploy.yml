@@ -33,7 +33,7 @@ jobs:
         run: npm ci
       # Running Tests on the Node Project
       - name: Test Application
-       run: npm test
+        run: npm test
 
       # Needs to be moved into the GitHub Secrets, Dont have access tho and just a burner.
       - name: Login to DockerHub Registry
