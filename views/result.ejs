@@ -32,6 +32,7 @@
                 class="resumeButton"><button id="download" class="btn btn-outline-dark"
                   type="button">Download</button></a>
               <button class="btn btn-outline-dark" onclick="ToggleReport()">View Report</button>
+              <button class="btn btn-outline-dark" id="viewbycsv">View Report from csv</button>
             </div>
             <div class="col-12 view-report" id="viewReport">
               <h3>Here are the Bugs:</h3>
@@ -94,7 +95,9 @@ src/jmh/java/io/reactivex/rxjava3/core/FlowableFlatMapCompletableSyncPerf.java,2
         </div>
 
       </section>
-
+      <section>
+        <table class="center" id="csvRoot"></table>
+      </section>
       <section>
         <div class="container">
 
@@ -111,7 +114,71 @@ src/jmh/java/io/reactivex/rxjava3/core/FlowableFlatMapCompletableSyncPerf.java,2
         <%- include("./partials/footer.ejs") %>
 
 
-          <script>
+         <script>
+          class TableCsv {
+            constructor(root) {
+              this.root = root;
+            }
+
+
+          update(data, headerColumns = []) {
+            this.clear();
+            this.setHeader(headerColumns);
+            this.setBody(data);
+          }
+
+          clear() {
+            this.root.innerHTML = "";
+          }
+          setHeader(headerColumns) {
+            this.root.insertAdjacentHTML(
+              "afterbegin",
+              `
+                    <thead>
+                        <tr>
+                            ${headerColumns.map((text) => `<th>${text}</th>`).join("")}
+                        </tr>
+                    </thead>
+                `
+            );
+          }
+
+          
+          setBody(data) {
+            const rowsHtml = data.map((row) => {
+              return `
+                        <tr>
+                            ${row.map((text) => `<td>${text}</td>`).join("")}
+                        </tr>
+                    `;
+            });
+
+            this.root.insertAdjacentHTML(
+              "beforeend",
+              `
+                    <tbody>
+                        ${rowsHtml.join("")}
+                    </tbody>
+                `
+            );
+          }
+        }
+
+        const tableRoot = document.querySelector("#csvRoot");
+        const csvFileInput = document.getElementById('viewbycsv');
+        const csvFile = "/scripts/ml_ready-process-metrics.csv";
+        const tableCsv = new TableCsv(tableRoot);
+
+        csvFileInput.addEventListener("click", (e) => {
+          
+          Papa.parse(csvFile, {
+            download: true,
+            complete: (results) => {
+              tableCsv.update(results.data.slice(1), results.data[0]);
+            }
+          });
+        });
+
             const button = document.getElementById('myButton')
             button.addEventListener('click', returnHome, false);
             async function returnHome(event) {
@@ -130,9 +197,9 @@ src/jmh/java/io/reactivex/rxjava3/core/FlowableFlatMapCompletableSyncPerf.java,2
                 element.style.display = "block";
               }
             }
-
+          
           </script>
-
+          <script src="https://cdn.jsdelivr.net/npm/papaparse@5.2.0/papaparse.min.js"></script>
 </body>
 
 </html>
