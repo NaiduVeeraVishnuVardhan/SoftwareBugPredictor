@@ -2,7 +2,7 @@ node_modules
 .env
 uploads
 
-scripts
+scripts/*
 
 #exludes python files on scripts folder
 !scripts/*.py
