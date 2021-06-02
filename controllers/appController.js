@@ -53,12 +53,8 @@ const repoLink = (req,res) => {
     shell.cd(directory+"/scripts/")
     shell.exec("sudo python3 processAndCodemetrics.py --project "+repoName)
     shell.exec("sudo python3 loadedmachinelearningmodel.py --project "+repoName)
+    shell.exec("sudo rm -rf "+repoName)    
 
-    // directory path
-    const dir = 'scripts/'+repoName;
-    // delete directory recursively
-    fs.rmdirSync(dir, { recursive: true });
-    console.log("Deleted")
     res.json({ status: repolink })
 }
 
