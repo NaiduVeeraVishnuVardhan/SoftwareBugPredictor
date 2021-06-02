@@ -33,7 +33,7 @@ const repoLink = (req,res) => {
         require("fs").mkdirSync("public/files/predicted_data")
     }
     if (!fs.existsSync("public/files/test_data")){
-        require("fs").mkdirSync("test_data")
+        require("fs").mkdirSync("public/files/test_data")
     }
     if(fs.existsSync("scripts/" + repoName)){
         shell.exec("rmdir scripts/" + repoName)
@@ -53,7 +53,8 @@ const repoLink = (req,res) => {
     shell.cd(directory+"/scripts/")
     shell.exec("sudo python3 processAndCodemetrics.py --project "+repoName)
     shell.exec("sudo python3 loadedmachinelearningmodel.py --project "+repoName)
-    shell.exec("sudo rm -rf "+repoName)    
+    shell.exec("sudo rm -rf "+repoName)
+        
 
     res.json({ status: repolink })
 }

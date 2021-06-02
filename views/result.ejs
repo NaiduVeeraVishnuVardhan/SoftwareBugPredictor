@@ -28,7 +28,7 @@
           <div class="row">
             <div class="col-12">
               <h4 class="margin-1rem">Download predicted project bugs here.</h4>
-              <a href="..\scripts\PredictedBugs.csv" download="PredictedBugs.csv" target="_blank"
+              <a href="public/files/predicted_data/SoftwareBugPredictor-PredictedBugs.csv" download="PredictedBugs.csv" target="_blank"
                 class="resumeButton"><button id="download" class="btn btn-outline-dark"
                   type="button">Download</button></a>
               <button class="btn btn-outline-dark" onclick="ToggleReport()">View Report</button>
@@ -166,7 +166,7 @@ src/jmh/java/io/reactivex/rxjava3/core/FlowableFlatMapCompletableSyncPerf.java,2
 
         const tableRoot = document.querySelector("#csvRoot");
         const csvFileInput = document.getElementById('viewbycsv');
-        const csvFile = "public/files/predicted_data/SoftwareBugPredictor-ml_ready-process-metrics.csv";
+        const csvFile = "public/files/predicted_data/SoftwareBugPredictor-PredictedBugs.csv";
         const tableCsv = new TableCsv(tableRoot);
 
         csvFileInput.addEventListener("click", (e) => {
