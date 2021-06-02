@@ -20,4 +20,4 @@ if __name__ == '__main__':
     ResultDataFrame = pd.DataFrame({'File name':x, 'predicted bugs':Ypred})
     print(ResultDataFrame)
     ResultDataFrame.to_csv(f"../public/files/predicted_data/{project_name}-PredictedBugs.csv")
-    ResultDataFrame.to_csv(f"PredictedBugs.csv")
+    
