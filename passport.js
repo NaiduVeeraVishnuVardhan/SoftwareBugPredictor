@@ -35,12 +35,12 @@ passport.deserializeUser(function(obj, cb) {
   cb(null, obj);
 });
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const GOOGLE_CLIENT_ID = '107493522406-199gbqob9v7e5u4rfktqrggo0tfnsnav.apps.googleusercontent.com';
-const GOOGLE_CLIENT_SECRET = 'fzc6cpSmAJrIfVXpTqDGbj2z';
+const GOOGLE_CLIENT_ID = '1107493522406-ee0tiqng97mb99bar20d6sgfnemeka1m.apps.googleusercontent.com';
+const GOOGLE_CLIENT_SECRET = 'nkzlE0wcXr8EpdD_xIUUy0mc';
 passport.use(new GoogleStrategy({
-    clientID: '107493522406-199gbqob9v7e5u4rfktqrggo0tfnsnav.apps.googleusercontent.com',
-    clientSecret: 'fzc6cpSmAJrIfVXpTqDGbj2z',
-    callbackURL: "http://localhost:3000/auth/google/callback"
+    clientID: '107493522406-ee0tiqng97mb99bar20d6sgfnemeka1m.apps.googleusercontent.com',
+    clientSecret: 'nkzlE0wcXr8EpdD_xIUUy0mc',
+    callbackURL: "http://localhost:8000/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
       userProfile=profile;
