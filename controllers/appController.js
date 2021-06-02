@@ -26,6 +26,15 @@ const repoLink = (req,res) => {
     if (!fs.existsSync("scripts")){
         require("fs").mkdirSync("scripts")
     }
+    if (!fs.existsSync("public/files")){
+        require("fs").mkdirSync("files")
+    }
+    if (!fs.existsSync("public/files/predicted_data")){
+        require("fs").mkdirSync("predicted_data")
+    }
+    if (!fs.existsSync("public/files/test_data")){
+        require("fs").mkdirSync("test_data")
+    }
 
     if(fs.existsSync("scripts/" + repoName)){
         shell.exec("rmdir scripts/" + repoName)
