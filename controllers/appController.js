@@ -26,7 +26,15 @@ const repoLink = (req,res) => {
     if (!fs.existsSync("scripts")){
         require("fs").mkdirSync("scripts")
     }
-
+    if (!fs.existsSync("public/files")){
+        require("fs").mkdirSync("public/files")
+    }
+    if (!fs.existsSync("public/files/predicted_data")){
+        require("fs").mkdirSync("public/files/predicted_data")
+    }
+    if (!fs.existsSync("public/files/test_data")){
+        require("fs").mkdirSync("test_data")
+    }
     if(fs.existsSync("scripts/" + repoName)){
         shell.exec("rmdir scripts/" + repoName)
     }
@@ -44,7 +52,13 @@ const repoLink = (req,res) => {
     console.log("Created process metrics csv files")
     shell.cd(directory+"/scripts/")
     shell.exec("sudo python3 processAndCodemetrics.py --project "+repoName)
-    console.log("Test data is created.")
+    shell.exec("sudo python3 loadedmachinelearningmodel.py --project "+repoName)
+
+    // directory path
+    const dir = 'scripts/'+repoName;
+    // delete directory recursively
+    fs.rmdirSync(dir, { recursive: true });
+    console.log("Deleted")
     res.json({ status: repolink })
 }
 

@@ -28,7 +28,7 @@
           <div class="row">
             <div class="col-12">
               <h4 class="margin-1rem">Download predicted project bugs here.</h4>
-              <a href="..\scripts\ml_ready-process-metrics.csv" download="ml_ready-process-metrics.csv" target="_blank"
+              <a href="..\scripts\PredictedBugs.csv" download="PredictedBugs.csv" target="_blank"
                 class="resumeButton"><button id="download" class="btn btn-outline-dark"
                   type="button">Download</button></a>
               <button class="btn btn-outline-dark" onclick="ToggleReport()">View Report</button>
@@ -185,7 +185,6 @@ src/jmh/java/io/reactivex/rxjava3/core/FlowableFlatMapCompletableSyncPerf.java,2
               event.preventDefault()
               window.location.href = "/";
             }
-
 
             ToggleReport = () =>{
               var element = document.getElementById('viewReport');
