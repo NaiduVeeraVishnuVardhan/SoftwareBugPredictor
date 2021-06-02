@@ -33,7 +33,7 @@ const repoLink = (req,res) => {
         require("fs").mkdirSync("public/files/predicted_data")
     }
     if (!fs.existsSync("public/files/test_data")){
-        require("fs").mkdirSync("public/files/test_data")
+        require("fs").mkdirSync("test_data")
     }
     if(fs.existsSync("scripts/" + repoName)){
         shell.exec("rmdir scripts/" + repoName)
@@ -57,16 +57,8 @@ const repoLink = (req,res) => {
     // directory path
     const dir = 'scripts/'+repoName;
     // delete directory recursively
-    fs.rmdir(dir, { recursive: true }, (err) => {
-        if (err) {
-            throw err;
-        }
-
-    console.log(`${dir} is deleted!`);
-});
-
-
-
+    fs.rmdirSync(dir, { recursive: true });
+    console.log("Deleted")
     res.json({ status: repolink })
 }
 
