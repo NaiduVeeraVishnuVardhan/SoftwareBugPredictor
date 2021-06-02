@@ -36,10 +36,10 @@ passport.deserializeUser(function(obj, cb) {
 });
 const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 const GOOGLE_CLIENT_ID = '107493522406-199gbqob9v7e5u4rfktqrggo0tfnsnav.apps.googleusercontent.com';
-const GOOGLE_CLIENT_SECRET = 'nkzlE0wcXr8EpdD_xIUUy0mc';
+const GOOGLE_CLIENT_SECRET = 'fzc6cpSmAJrIfVXpTqDGbj2z';
 passport.use(new GoogleStrategy({
     clientID: '107493522406-199gbqob9v7e5u4rfktqrggo0tfnsnav.apps.googleusercontent.com',
-    clientSecret: 'nkzlE0wcXr8EpdD_xIUUy0mc',
+    clientSecret: 'fzc6cpSmAJrIfVXpTqDGbj2z',
     callbackURL: "http://localhost:3000/auth/google/callback"
   },
   function(accessToken, refreshToken, profile, done) {
