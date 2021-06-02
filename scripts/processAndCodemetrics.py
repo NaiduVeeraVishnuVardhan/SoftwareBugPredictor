@@ -18,7 +18,7 @@ def merge_process_metrics(project):
 
     age_authors_csv = filtered_age[["entity", "age-months"]].merge(filtered_authors[["entity", "n-authors", "n-revs"]],
                                                                    on="entity", how="left")
-    age_authors_csv.to_csv(f"../public/files/test_data/${project}-ml_ready-process-metrics.csv")
+    age_authors_csv.to_csv(f"../public/files/test_data/{project}-ml_ready-process-metrics.csv")
 
 
 
