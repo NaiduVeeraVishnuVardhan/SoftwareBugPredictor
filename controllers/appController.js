@@ -44,8 +44,21 @@ const repoLink = (req,res) => {
     console.log("Created process metrics csv files")
     shell.cd(directory+"/scripts/")
     shell.exec("sudo python3 processAndCodemetrics.py --project "+repoName)
-    shell.exec("sudo python3 loadedmachinelearningmodel.py --project ")
-    console.log("Test data is created.")
+    shell.exec("sudo python3 loadedmachinelearningmodel.py --project"+repoName)
+
+    // directory path
+    const dir = 'scripts/'+repoName;
+    // delete directory recursively
+    fs.rmdir(dir, { recursive: true }, (err) => {
+        if (err) {
+            throw err;
+        }
+
+    console.log(`${dir} is deleted!`);
+});
+
+
+
     res.json({ status: repolink })
 }
 
