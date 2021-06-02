@@ -52,7 +52,7 @@ const repoLink = (req,res) => {
     console.log("Created process metrics csv files")
     shell.cd(directory+"/scripts/")
     shell.exec("sudo python3 processAndCodemetrics.py --project "+repoName)
-    shell.exec("sudo python3 loadedmachinelearningmodel.py --project"+repoName)
+    shell.exec("sudo python3 loadedmachinelearningmodel.py --project "+repoName)
 
     // directory path
     const dir = 'scripts/'+repoName;
