@@ -19,7 +19,8 @@ const repoLink = (req, res) => {
 
     console.log(repoName)
 
-    directory = process.cwd()
+    var path = require('path')
+    var directory = path.dirname(require.main.filename)
 
     if (!fs.existsSync('scripts')) {
         require('fs').mkdirSync('scripts', { recursive: true }, (err) => {})
