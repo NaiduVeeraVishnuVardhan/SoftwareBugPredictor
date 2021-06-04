@@ -22,7 +22,7 @@ const repoLink = (req, res) => {
     directory = process.cwd()
 
     if (!fs.existsSync('scripts')) {
-        require('fs').mkdirSync('scripts')
+        require('fs').mkdirSync('scripts', { recursive: true }, (err) => {})
     }
     if (!fs.existsSync('public/files')) {
         require('fs').mkdirSync(
