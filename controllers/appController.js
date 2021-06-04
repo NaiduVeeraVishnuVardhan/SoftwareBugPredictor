@@ -25,13 +25,25 @@ const repoLink = (req, res) => {
         require('fs').mkdirSync('scripts')
     }
     if (!fs.existsSync('public/files')) {
-        require('fs').mkdirSync('public/files')
+        require('fs').mkdirSync(
+            'public/files',
+            { recursive: true },
+            (err) => {}
+        )
     }
     if (!fs.existsSync('public/files/predicted_data')) {
-        require('fs').mkdirSync('public/files/predicted_data')
+        require('fs').mkdirSync(
+            'public/files/predicted_data',
+            { recursive: true },
+            (err) => {}
+        )
     }
     if (!fs.existsSync('public/files/test_data')) {
-        require('fs').mkdirSync('public/files/test_data')
+        require('fs').mkdirSync(
+            'public/files/test_data',
+            { recursive: true },
+            (err) => {}
+        )
     }
     if (fs.existsSync('scripts/' + repoName)) {
         shell.exec('rmdir scripts/' + repoName)
