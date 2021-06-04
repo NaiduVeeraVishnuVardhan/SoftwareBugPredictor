@@ -29,7 +29,7 @@
                             Download predicted project bugs here.
                         </h4>
                         <a
-                            href="public/files/predicted_data/SoftwareBugPredictor-PredictedBugs.csv"
+                            href="public/files/predicted_data/PredictedBugs.csv"
                             download="PredictedBugs.csv"
                             target="_blank"
                             class="resumeButton"
@@ -182,8 +182,7 @@
 
             const tableRoot = document.querySelector('#csvRoot')
             const csvFileInput = document.getElementById('viewbycsv')
-            const csvFile =
-                'public/files/predicted_data/SoftwareBugPredictor-PredictedBugs.csv'
+            const csvFile = 'public/files/predicted_data/PredictedBugs.csv'
             const tableCsv = new TableCsv(tableRoot)
 
             csvFileInput.addEventListener('click', (e) => {
