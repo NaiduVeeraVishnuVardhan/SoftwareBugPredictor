@@ -8,6 +8,7 @@ const authController = require('../controllers/authController')
 const isAuthenticated = require('../helpers/authHelper')
 
 router.post('/api/reg', appController.repoLink)
+router.get('/home', appController.homeLink)
 router.get('/result', appController.resultPage)
 router.get('/login', appController.loginPage)
 router.get('/signup', appController.signupPage)

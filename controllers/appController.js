@@ -27,22 +27,19 @@ const repoLink = (req, res) => {
     }
     if (!fs.existsSync('public/files')) {
         require('fs').mkdirSync(
-            'public/files',
-            { recursive: true },
+            'public/files', { recursive: true },
             (err) => {}
         )
     }
     if (!fs.existsSync('public/files/predicted_data')) {
         require('fs').mkdirSync(
-            'public/files/predicted_data',
-            { recursive: true },
+            'public/files/predicted_data', { recursive: true },
             (err) => {}
         )
     }
     if (!fs.existsSync('public/files/test_data')) {
         require('fs').mkdirSync(
-            'public/files/test_data',
-            { recursive: true },
+            'public/files/test_data', { recursive: true },
             (err) => {}
         )
     }
@@ -61,30 +58,30 @@ const repoLink = (req, res) => {
     shell.exec('sudo systemctl start docker')
     shell.exec(
         'sudo docker run -v ' +
-            directory +
-            '/scripts/' +
-            repoName +
-            ':/data -i code-maat-app -l /data/logfile.log -c git2 >' +
-            repoName +
-            '_code_metrics_authors.csv'
+        directory +
+        '/scripts/' +
+        repoName +
+        ':/data -i code-maat-app -l /data/logfile.log -c git2 >' +
+        repoName +
+        '_code_metrics_authors.csv'
     )
     shell.exec(
         'sudo docker run -v ' +
-            directory +
-            '/scripts/' +
-            repoName +
-            ':/data -i code-maat-app -l /data/logfile.log -c git2 -a coupling >' +
-            repoName +
-            '_code_metrics_coupling.csv'
+        directory +
+        '/scripts/' +
+        repoName +
+        ':/data -i code-maat-app -l /data/logfile.log -c git2 -a coupling >' +
+        repoName +
+        '_code_metrics_coupling.csv'
     )
     shell.exec(
         'sudo docker run -v ' +
-            directory +
-            '/scripts/' +
-            repoName +
-            ':/data -i code-maat-app -l /data/logfile.log -c git2 -a age >' +
-            repoName +
-            '_code_metrics_age.csv'
+        directory +
+        '/scripts/' +
+        repoName +
+        ':/data -i code-maat-app -l /data/logfile.log -c git2 -a age >' +
+        repoName +
+        '_code_metrics_age.csv'
     )
     console.log('Created process metrics csv files')
     shell.cd(directory + '/scripts/')
@@ -100,6 +97,10 @@ const repoLink = (req, res) => {
 const loginPage = (req, res) => {
     res.render('login', { title: 'Login Page' })
 }
+const homeLink = (req, res) => {
+    res.render('home', { title: 'Home Page' })
+}
+
 const signupPage = (req, res) => {
     res.render('signup', { title: 'Sign Up Page' })
 }
@@ -123,6 +124,7 @@ const addResult = (req, res) => {
 
 module.exports = {
     repoLink,
+    homeLink,
     resultPage,
     loginPage,
     signupPage,
