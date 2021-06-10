@@ -60,11 +60,18 @@ passport.use(UserDetails.createStrategy())
 passport.serializeUser(UserDetails.serializeUser())
 passport.deserializeUser(UserDetails.deserializeUser())
 
+<<<<<<< HEAD
 
 app.get('/', function(req, res) {
     res.render('auth');
 });
 
+=======
+app.get('/', (req, res) => {
+    res.render('home', { title: 'Home Page' })
+})
+  
+>>>>>>> 58b091c4941844ae9b71c788a2913e3e830fa747
 // Routes
 app.use('/', routes)
 app.use((req, res) => {
