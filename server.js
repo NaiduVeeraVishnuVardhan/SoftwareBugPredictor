@@ -64,9 +64,6 @@ passport.deserializeUser(UserDetails.deserializeUser())
 app.get('/', (req, res) => {
     res.render('home', { title: 'Home Page' })
 })
-app.get('/', function(req, res) {
-    res.render('auth');
-  });
   
 // Routes
 app.use('/', routes)
