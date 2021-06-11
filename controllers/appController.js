@@ -103,13 +103,22 @@ const loginPage = (req, res) => {
 const signupPage = (req, res) => {
     res.render('signup', { title: 'Sign Up Page' })
 }
+const forgotPasswordPage = (req, res) => {
+    res.render('forgot',
+        {
+            title: 'Resset Pasword  Page',
+            info: false,
+            error: false
+        }
+    )
+}
 
 const addResult = (req, res) => {
     const result = new ResultModel({
         name: req.body.name,
         date: Date.now(),
-        ownerId: req.user.id,
-    })
+        ownerId: req.user.id
+    });
 
     result
         .save()
@@ -117,8 +126,8 @@ const addResult = (req, res) => {
             res.json({ savedItem })
         })
         .catch((err) => {
-            console.error(err)
-        })
+            console.error(err);
+        });
 }
 
 module.exports = {
@@ -126,5 +135,6 @@ module.exports = {
     resultPage,
     loginPage,
     signupPage,
-    addResult,
+    forgotPasswordPage,
+    addResult
 }
