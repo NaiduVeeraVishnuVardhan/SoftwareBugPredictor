@@ -4,9 +4,9 @@ const doc = require('./docs')
 const express = require('express')
 const routes = require('./routes/index')
 const cors = require('cors')
+const session = require('express-session');
 const morgan = require('morgan')
 const bodyParser = require('body-parser')
-const session = require('express-session');
 const mongoose = require('mongoose')
 const passport = require('passport')
 const passportLocalMongoose = require('passport-local-mongoose')
@@ -15,6 +15,7 @@ const expressSession = require('express-session')({
     resave: false,
     saveUninitialized: false,
 })
+
 const { userSchema } = require('./models/user')
 const mongo = require('./helpers/mongo')
 
@@ -63,6 +64,10 @@ passport.deserializeUser(UserDetails.deserializeUser())
 app.get('/', (req, res) => {
     res.render('home', { title: 'Home Page' })
 })
+app.get('/', function(req, res) {
+    res.render('auth');
+  });
+  
 // Routes
 app.use('/', routes)
 app.use((req, res) => {
@@ -107,3 +112,7 @@ const getprojects = (res) => {
 }
 
 openConnection()
+
+
+
+
