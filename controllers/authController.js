@@ -8,42 +8,42 @@ const router = express.Router();
 
 // Routes
 const login = (req, res, next) => {
-  passport.authenticate('local', (err, user, info) => {
-    if (err) {
-      return next(err);
-    }
+    passport.authenticate('local', (err, user, info) => {
+        if (err) {
+            return next(err);
+        }
 
-    if (!user) {
-      return res.redirect(`/login?info=${info.message}`);
-    }
+        if (!user) {
+            return res.redirect(`/login?info=${info.message}`);
+        }
 
-    req.logIn(user, () => {
-      if (err) {
-        return next(err);
-      }
+        req.logIn(user, () => {
+            if (err) {
+                return next(err);
+            }
 
-      return res.redirect('/');
-    });
-    return null;
-  })(req, res, next);
+            return res.redirect('/home');
+        });
+        return null;
+    })(req, res, next);
 };
 
 const logout = (req, res) => {
-  req.logout();
-  res.redirect('/login');
+    req.logout();
+    res.redirect('/login');
 };
 
 const getUser = (req, res) => {
-  res.send({ user: req.user })
+    res.send({ user: req.user })
 };
 
 const register = (req, res) => {
-  const { username, password } = req.body;
+    const { username, password } = req.body;
 
-  const UserDetails = mongo.model('User', userSchema);
+    const UserDetails = mongo.model('User', userSchema);
 
-  UserDetails.register({username, active: false}, password);
-  res.redirect("/login/")
+    UserDetails.register({ username, active: false }, password);
+    res.redirect("/login/")
 
 };
 

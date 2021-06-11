@@ -26,8 +26,7 @@ const PORT = process.env.PORT || 3000
 const app = express()
 const MongoClient = require('mongodb').MongoClient
 mongoose.connect(
-    'mongodb+srv://govindarajans:sowmyarajan@cluster0.qiqrp.mongodb.net/test',
-    { useNewUrlParser: true, useUnifiedTopology: true }
+    'mongodb+srv://govindarajans:sowmyarajan@cluster0.qiqrp.mongodb.net/test', { useNewUrlParser: true, useUnifiedTopology: true }
 )
 if (process.env.NODE_ENV === 'development') {
     app.use(morgan('tiny'))
@@ -49,7 +48,7 @@ app.set('view engine', 'ejs')
 app.use(express.urlencoded({ extended: true }))
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(doc, { explorer: true }))
 app.get('/', (req, res) => {
-    res.render('home', { title: 'Home Page' })
+    res.render('login', { title: 'Login Page' })
 })
 app.use(express.urlencoded({ extended: true }))
 
@@ -61,12 +60,14 @@ passport.use(UserDetails.createStrategy())
 passport.serializeUser(UserDetails.serializeUser())
 passport.deserializeUser(UserDetails.deserializeUser())
 
+
+app.get('/', function(req, res) {
+    res.render('auth');
+});
+
 app.get('/', (req, res) => {
     res.render('home', { title: 'Home Page' })
 })
-app.get('/', function(req, res) {
-    res.render('auth');
-  });
   
 // Routes
 app.use('/', routes)
@@ -105,14 +106,10 @@ const project = (login, res) => {
 
 // retrieve all projects
 const getprojects = (res) => {
-    projectsCollection.find().toArray(function (err, result) {
+    projectsCollection.find().toArray(function(err, result) {
         if (err) throw err
         res.send(result)
     })
 }
 
 openConnection()
-
-
-
-
